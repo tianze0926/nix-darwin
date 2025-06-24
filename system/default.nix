@@ -42,6 +42,8 @@
     onActivation.cleanup = "zap";
     brews = [
       "tmux"
+      "lazygit"
+      "autossh"
     ];
     casks = [
       # utility
