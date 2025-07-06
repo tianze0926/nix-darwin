@@ -1,4 +1,4 @@
-{ opt, ... }:
+{ opt, configSys, ... }:
 let
   actualFile = file: path: {
     home.file."${file}" = {
@@ -15,9 +15,8 @@ in
 
 {
   imports = [
-    ./shell
     (actualFile ".config/karabiner/karabiner.json" ./karabiner.json)
-  ];
+  ] ++ configSys;
 
   xdg.configFile."pip/pip.conf".text = ''
     [global]

@@ -6,11 +6,14 @@
   ...
 }:
 {
+  imports = [
+    ./home-manager.nix
+    ./shell
+  ];
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
     nil
   ];
-  programs.zsh.enable = false;
 
   # Necessary for using flakes on this system.
   nix.settings.experimental-features = "nix-command flakes";
@@ -71,7 +74,6 @@
         "miniforge"
         "wezterm@nightly"
         # office
-        "arc"
         "zen"
         "gimp"
         "inkscape"
@@ -86,15 +88,6 @@
     }
   ];
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users."${opt.user}" = ../home;
-    extraSpecialArgs = {
-      inherit opt;
-    };
-    backupFileExtension = "bak";
-  };
   users.users."${opt.user}" = {
     home = "/Users/${opt.user}";
   };

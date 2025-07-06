@@ -57,6 +57,7 @@
                   "seadrive"
                   "tailscale-app"
                   "wechat"
+                  "google-chrome"
                 ];
                 taps = [ "mhaeuser/mhaeuser" ];
               };
@@ -65,6 +66,9 @@
               user = "zhoutianze";
               git.username = "zhoutianze";
               git.email = "zhoutianze@xiaohongshu.com";
+              brewExtra.casks = [
+                "arc"
+              ];
             };
           };
     };
