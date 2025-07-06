@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  lib,
   opt,
   ...
 }:
@@ -36,41 +37,53 @@
     # Allow sudo without password for the primary user.
     ${opt.user} ALL=(ALL) NOPASSWD: ALL
   '';
-
-  homebrew = {
+  security.pam.services.sudo_local = {
     enable = true;
-    onActivation.cleanup = "zap";
-    brews = [
-      "tmux"
-      "lazygit"
-      "autossh"
-    ];
-    casks = [
-      # utility
-      "alt-tab"
-      "jordanbaird-ice"
-      "karabiner-elements"
-      "maccy"
-      "monitorcontrol"
-      "mos"
-      "snipaste"
-      "stats"
-      # cli
-      "font-code-new-roman-nerd-font"
-      "miniforge"
-      # office
-      "arc"
-      "zen"
-      "gimp"
-      "neteasemusic"
-      "obs"
-      "tencent-meeting"
-      "visual-studio-code"
-      "wechatwork"
-      "wpsoffice-cn"
-      "zotero"
-    ];
+    touchIdAuth = true; # sudo with touch ID
+    reattach = true; # sudo with touch ID in tmux
   };
+
+  homebrew = lib.mkMerge [
+    opt.brewExtra
+    {
+      enable = true;
+      onActivation.cleanup = "zap";
+      caskArgs.no_quarantine = true;
+      brews = [
+        "tmux"
+        "lazygit"
+        "autossh"
+        "neovim"
+      ];
+      casks = [
+        # utility
+        "alt-tab"
+        "jordanbaird-ice"
+        "karabiner-elements"
+        "maccy"
+        "monitorcontrol"
+        "mos"
+        "snipaste"
+        "stats"
+        # cli
+        "font-code-new-roman-nerd-font"
+        "miniforge"
+        "wezterm@nightly"
+        # office
+        "arc"
+        "zen"
+        "gimp"
+        "inkscape"
+        "neteasemusic"
+        "obs"
+        "tencent-meeting"
+        "visual-studio-code"
+        "wechatwork"
+        "wpsoffice-cn"
+        "zotero"
+      ];
+    }
+  ];
 
   home-manager = {
     useGlobalPkgs = true;
@@ -79,6 +92,7 @@
     extraSpecialArgs = {
       inherit opt;
     };
+    backupFileExtension = "bak";
   };
   users.users."${opt.user}" = {
     home = "/Users/${opt.user}";

@@ -31,6 +31,7 @@ in
     [user]
       name = ${opt.git.username}
       email = ${opt.git.email}
+    ${opt.git.extraConfig or ""}
   '';
 
   # This value determines the Home Manager release that your

@@ -29,6 +29,7 @@ function proxy_unset {
 proxy_set
 
 export AUTOSSH_PORT=0
+export EDITOR=nvim
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!

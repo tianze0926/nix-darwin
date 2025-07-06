@@ -17,21 +17,55 @@
       home-manager,
     }:
     {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#KQYGV764WY
-      darwinConfigurations."KQYGV764WY" = nix-darwin.lib.darwinSystem {
-        specialArgs = {
-          inherit inputs;
-          opt = {
-            user = "zhoutianze";
-            git.username = "zhoutianze";
-            git.email = "zhoutianze@xiaohongshu.com";
+      darwinConfigurations =
+        nixpkgs.lib.attrsets.mapAttrs
+          (
+            hostname: opt:
+            nix-darwin.lib.darwinSystem {
+              specialArgs = {
+                inherit inputs opt;
+              };
+              modules = [
+                ./system
+                home-manager.darwinModules.home-manager
+              ];
+            }
+          )
+          {
+            "Tianzes-MacBook-Air" = {
+              user = "tianze";
+              git.username = "tianze0926";
+              git.email = "i@tianze.me";
+              git.extraConfig = ''
+                [http "https://github.com"]
+                  proxy = socks5h://127.0.0.1:1080
+              '';
+              brewExtra = {
+                brews = [
+                  "yt-dlp"
+                  "mpv"
+                  "scrcpy"
+                  "yazi"
+                  "ollama"
+                ];
+                casks = [
+                  "feishu"
+                  "battery-toolkit"
+                  "moonlight"
+                  "prismlauncher"
+                  "qbittorrent"
+                  "seadrive"
+                  "tailscale-app"
+                  "wechat"
+                ];
+                taps = [ "mhaeuser/mhaeuser" ];
+              };
+            };
+            "KQYGV764WY" = {
+              user = "zhoutianze";
+              git.username = "zhoutianze";
+              git.email = "zhoutianze@xiaohongshu.com";
+            };
           };
-        };
-        modules = [
-          ./system
-          home-manager.darwinModules.home-manager
-        ];
-      };
     };
 }
