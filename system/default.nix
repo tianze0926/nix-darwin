@@ -9,6 +9,7 @@
     ./home-manager.nix
     ./shell
     ./brew.nix
+    ./disable_bluetooth_at_sleep.nix
   ];
   environment.systemPackages = with pkgs; [
     nixfmt-rfc-style
