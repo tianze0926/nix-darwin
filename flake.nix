@@ -43,7 +43,6 @@
               brewExtra = {
                 brews = [
                   "yt-dlp"
-                  "mpv"
                   "scrcpy"
                   "yazi"
                   "ollama"

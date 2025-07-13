@@ -11,6 +11,7 @@
         "lazygit"
         "autossh"
         "neovim"
+        "mpv"
       ];
       casks = [
         # utility

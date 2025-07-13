@@ -16,6 +16,7 @@ in
 {
   imports = [
     (actualFile ".config/karabiner/karabiner.json" ./karabiner.json)
+    ./mpv.nix
   ] ++ configSys;
 
   xdg.configFile."pip/pip.conf".text = ''
