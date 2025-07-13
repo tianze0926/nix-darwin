@@ -58,8 +58,12 @@
                   "tailscale-app"
                   "wechat"
                   "google-chrome"
+                  "quarkclouddrive"
                 ];
-                taps = [ "mhaeuser/mhaeuser" ];
+                taps = [
+                  "mhaeuser/mhaeuser"
+                  "brewforge/chinese"
+                ];
               };
             };
             "KQYGV764WY" = {
