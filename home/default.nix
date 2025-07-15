@@ -19,6 +19,11 @@ in
     ./mpv.nix
   ] ++ configSys;
 
+  targets.darwin.defaults.NSGlobalDomain.AppleLanguages = [
+    "en-CN"
+    "zh-Hans-CN"
+  ];
+
   xdg.configFile."pip/pip.conf".text = ''
     [global]
     index-url = https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
