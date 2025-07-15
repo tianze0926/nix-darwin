@@ -19,10 +19,13 @@ in
     ./mpv.nix
   ] ++ configSys;
 
-  targets.darwin.defaults.NSGlobalDomain.AppleLanguages = [
-    "en-CN"
-    "zh-Hans-CN"
-  ];
+  targets.darwin.defaults.NSGlobalDomain = {
+    AppleLanguages = [
+      "en-CN"
+      "zh-Hans-CN"
+    ];
+    AppleLocale = "en_CN";
+  };
 
   xdg.configFile."pip/pip.conf".text = ''
     [global]
