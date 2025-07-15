@@ -71,6 +71,8 @@
               git.email = "zhoutianze@xiaohongshu.com";
               brewExtra.casks = [
                 "arc"
+                "cursor"
+                "orbstack"
               ];
             };
           };
